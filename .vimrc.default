@@ -1,0 +1,55 @@
+<<<<<<< HEAD
+" my reccomended sane defaults for vim
+
+=======
+>>>>>>> parent of e468ba2... renamed file due to extention
+set nocompatible        " ensure config is not used with Vi
+
+"Colors"
+colorscheme Evan_term
+syntax enable           " enables syntax highlighting
+
+"Indentation"
+set expandtab           " tabs expand to spaces
+set tabstop     =4      " num of visual spaces per tab
+set softtabstop =4      " num of spaces per tab in edit
+set shiftwidth  =4      " num of spaces to use per indent
+set smarttab            " uses shiftwidth for indents instead of tabstop
+filetype indent on      " loads filetype specific indentation settings
+
+"UI config"
+set number              " enables linenumbers
+set relativenumber      " enables relative linenumbers
+set showmatch           " highlights matching brackets
+set ruler               " show cursor position at all times
+set showcmd             " display incomplete commands
+set wildmenu            " visual autocomplete for command menu
+
+"Config"
+set nomodeline          " disabled for security reasons
+set mouse       =a      " enables mouse in all modes
+set virtualedit =block  " allows blockwise selections
+set lazyredraw          " redraw only when needed
+set wildignorecase      " ignores case on command autocompletion
+
+"Searching"
+set ignorecase          " searches are case insensitive. use \C to disable
+set incsearch           " searches as characters are entered
+set hlsearch            " highlights matches
+" enter will turn off search highlighing until next search
+nnoremap <silent><CR> :nohlsearch<CR><CR>
+
+"Movement"
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
+" allows backspaing over indents, linebreaks, and text that wasn't inserted
+set backspace   =indent,eol,start
+" backspace, space and cursor keys continue to previous/next lines
+set whichwrap   +=<,>,[,]
+
+" jumps to the last cursor position in the file
+au BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
