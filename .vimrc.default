@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-" my reccomended sane defaults for vim
-
-=======
->>>>>>> parent of e468ba2... renamed file due to extention
 set nocompatible        " ensure config is not used with Vi
 
 "Colors"
