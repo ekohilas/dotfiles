@@ -9,9 +9,9 @@ syntax enable           " enables syntax highlighting
 
 "Indentation"
 set expandtab           " tabs expand to spaces
-set tabstop=4           " num of visual spaces per tab
-set softtabstop=4       " num of spaces per tab in edit
-set shiftwidth=4        " num of spaces to use per indent
+set tabstop     =4      " num of visual spaces per tab
+set softtabstop =4      " num of spaces per tab in edit
+set shiftwidth  =4      " num of spaces to use per indent
 set smarttab            " uses shiftwidth for indents instead of tabstop
 filetype indent on      " loads filetype specific indentation settings
 
@@ -20,27 +20,36 @@ set number              " enables linenumbers
 set relativenumber      " enables relative linenumbers
 set wildmenu            " visual autocomplete for command menu
 set showmatch           " highlights matching brackets
-set ruler               " show cursor position at all times
 set showcmd             " display incomplete commands
-set showmode            " shows current mode
 set cursorline          " highlights the cursor line
 set cursorcolumn        " highlights the cursor column
-set colorcolumn=80      " colours the 80th column
-hi ColorColumn ctermbg=0
+set colorcolumn =80     " colours the 80th column
 " displays whitespace as characters
 set list listchars=tab:│\ ,trail:·,nbsp:⎵
 
 "Config"
 set nomodeline          " disabled for security reasons
 set autochdir           " sets the working directory to the current file
-set virtualedit=block   " allows blockwise selections
-set undofile            " undo persists after closing file
-set textwidth=79        " sets the textwidth formatting to 79 characters (PEP 8)
+set virtualedit =block  " allows blockwise selections
+set textwidth   =79     " sets the textwidth formatting to 79 characters (PEP 8)
 set lazyredraw          " redraw only when needed
-set mouse=a             " enables mouse in all modes
+set mouse       =a      " enables mouse in all modes
 set wildignorecase      " ignores case on command autocompletion
 set formatoptions-=t    " disables formatting for text
 au FileType text,markdown setlocal formatoptions+=t "re-enables for text files
+filetype plugin on      " loads filetype specific plugin settings
+set omnifunc    =syntaxcomplete#Complete
+" Ctrl-L will redraw the screen, updating the syntax and de-highlight matches
+noremap <silent><c-l> :nohlsearch<cr>
+            \:diffupdate<cr>
+            \:syntax sync fromstart<cr>
+            \<c-l>
+
+" persitent undo configuration
+set undofile            " undo persists after closing file
+set undodir     =$HOME/.local/share/nvim/undo " sets the undofile directory
+silent call system("mkdir -p " . &undodir) " creates the directory
+
 
 " disables arrow keys
 noremap <UP>    <NOP>
@@ -53,22 +62,20 @@ noremap <RIGHT> <NOP>
 set ignorecase          " searches are case insensitive. use \C to disable
 set incsearch           " searches as characters are entered
 set hlsearch            " highlights matches
-" Enter will turn off search highlighing until next search
-nnoremap <silent><CR> :nohlsearch<CR><CR>
 
 "Folding"
 set nofoldenable        " disables initial folding
-set foldnestmax=4       " limits folding to the 4th level (Linus)
-set foldmethod=indent   " folds by indents
+set foldnestmax =4      " limits folding to the 4th level (Linus)
+set foldmethod  =indent " folds by indents
 
 "Movement"
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
 " allows backspaing over indents, linebreaks, and text that wasn't inserted
-set backspace=indent,eol,start
+set backspace   =indent,eol,start
 " backspace, space and cursor keys continue to previous/next lines
-set whichwrap+=<,>,[,]
+set whichwrap   +=<,>,[,]
 
 "Leader?"
 inoremap fd <esc>
@@ -80,8 +87,28 @@ inoremap df <esc>
 " Can slow things down, but show whitespace as red while typing.
 "au InsertCharPre * match ExtraWhitespace /\s\+$/
 
+" Removes trailing witespace on writing to files
+" This can be a problem for formats that depend on trailing whitespace (see:
+" git format-patch). In such cases, just use `noa w` when saving.
+" doesn't consider trailing whitespace in multiline comments
+autocmd FileWritePre,FileAppendPre,FilterWritePre,BufWritePre *
+            \ :call TrimWhitespace()
+
+" removes trailing whitespace while saving the view and search term
+function! TrimWhitespace()
+    let l:save = winsaveview()
+    %s/\s\+$//ge
+    call winrestview(l:save)
+endfunc
+
+" indent entire file
+noremap <F6> mzgg=G`z
+" toggles spellcheck with F7
+noremap <F7> :setlocal spell! spelllang=en_au<cr>
+inoremap <F7> <c-\><c-o>:setlocal spell! spelllang=en_au<cr>
+
 " jumps to the last cursor position in the file
-au BufReadPost *
+autocmd BufReadPost *
             \ if line("'\"") > 1 && line("'\"") <= line("$") |
             \   exe "normal! g`\"" |
             \ endif

@@ -1,8 +1,8 @@
 set nocompatible        " ensure config is not used with Vi
 
 "Colors"
-colorscheme Evan_term
 syntax enable           " enables syntax highlighting
+colorscheme default     " enable a colour scheme
 
 "Indentation"
 set expandtab           " tabs expand to spaces
@@ -31,8 +31,11 @@ set wildignorecase      " ignores case on command autocompletion
 set ignorecase          " searches are case insensitive. use \C to disable
 set incsearch           " searches as characters are entered
 set hlsearch            " highlights matches
-" enter will turn off search highlighing until next search
-nnoremap <silent><CR> :nohlsearch<CR><CR>
+" Ctrl-L will redraw the screen, updating the syntax and de-highlight matches
+noremap <silent><c-l> :nohlsearch<cr>
+            \:diffupdate<cr>
+            \:syntax sync fromstart<cr>
+            \<c-l>
 
 "Movement"
 " move vertically by visual line
@@ -45,6 +48,6 @@ set whichwrap   +=<,>,[,]
 
 " jumps to the last cursor position in the file
 au BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
+            \ if line("'\"") > 1 && line("'\"") <= line("$") |
+            \   exe "normal! g`\"" |
+            \ endif
