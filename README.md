@@ -10,3 +10,4 @@ Want the DarkIdle Colorscheme?
 ```
 wget https://raw.githubusercontent.com/ekohilas/dotfiles/master/.vim/colors/DarkIdle.vim -O ~/.vim/colors/
 ```
+Don't forget to add ```colorscheme DarkIdle``` to your .vimrc
