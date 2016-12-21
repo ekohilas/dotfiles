@@ -8,6 +8,6 @@ wget https://raw.githubusercontent.com/ekohilas/dotfiles/master/.vimrc.default -
 
 Want the DarkIdle Colorscheme?
 ```
-wget https://raw.githubusercontent.com/ekohilas/dotfiles/master/.vim/colors/DarkIdle.vim -O ~/.vim/colors/
+wget https://raw.githubusercontent.com/ekohilas/dotfiles/master/.vim/colors/DarkIdle.vim -O ~/.vim/colors/DarkIdle.vim
 ```
 Don't forget to add ```colorscheme DarkIdle``` to your .vimrc
