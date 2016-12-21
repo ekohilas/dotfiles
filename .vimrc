@@ -4,7 +4,7 @@ execute pathogen#infect()
 set nocompatible        " ensure config is not used with Vi
 
 "Colors"
-colorscheme Evan_term
+colorscheme DarkIdle
 syntax enable           " enables syntax highlighting
 
 "Indentation"
@@ -115,6 +115,7 @@ autocmd BufReadPost *
 
 "Airline"
 set laststatus=2        " always enable the status line
+set noshowmode          " disable showing current mode
 let g:airline_powerline_fonts = 1
 
 " Convenient command to see the difference between the current buffer and the
@@ -134,7 +135,7 @@ function! NumberToggle()
     endif
 endfunc
 
-" maps Ctrl-N to toggle relative numbers
+" maps Ctrl-Alt-N to toggle relative numbers
 nnoremap <C-n> :call NumberToggle()<CR>
 
 function! DisplayColorSchemes()
@@ -151,3 +152,8 @@ function! DisplayColorSchemes()
     endfor
     exec "cd " . currDir
 endfunction
+
+map <F8> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
