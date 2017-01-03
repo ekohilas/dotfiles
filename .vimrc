@@ -79,7 +79,6 @@ set whichwrap   +=<,>,[,]
 
 "Leader?"
 inoremap fd <esc>
-inoremap df <esc>
 
 " Make the whitespace RED
 "highlight ExtraWhitespace ctermbg=red guibg=red
