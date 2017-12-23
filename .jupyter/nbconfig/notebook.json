@@ -1,0 +1,48 @@
+{
+  "keys": {
+    "command": {
+      "bind": {
+        "ctrl-l": "jupyter-notebook:clear-cell-output",
+        "shift-o": "jupyter-notebook:insert-cell-above",
+        "j": "jupyter-notebook:select-next-cell",
+        "p": "jupyter-notebook:paste-cell-below",
+        "up": "jupyter-notebook:select-previous-cell",
+        "o": "jupyter-notebook:insert-cell-below",
+        "y": "jupyter-notebook:copy-cell",
+        "ctrl-up": "jupyter-notebook:move-cell-up",
+        "k": "jupyter-notebook:select-previous-cell",
+        "ctrl-m": "jupyter-notebook:change-cell-to-markdown",
+        "ctrl-p": "jupyter-notebook:paste-cell-below",
+        "shift-p": "jupyter-notebook:paste-cell-above",
+        "down": "jupyter-notebook:select-next-cell",
+        "ctrl-shift-p": "jupyter-notebook:paste-cell-above",
+        "ctrl-y": "jupyter-notebook:copy-cell",
+        "ctrl-r": "jupyter-notebook:change-cell-to-raw",
+        "m": "jupyter-notebook:merge-selected-cells",
+        "ctrl-down": "jupyter-notebook:move-cell-down",
+        "ctrl-n": "jupyter-notebook:change-cell-to-code"
+      },
+      "unbind": [
+        "p",
+        "c",
+        "v",
+        "shift-v",
+        "b",
+        "a",
+        "m",
+        "r",
+        "j",
+        "up",
+        "down",
+        "shift-m"
+      ]
+    }
+  },
+  "Notebook": {
+    "Header": true,
+    "Toolbar": true
+  },
+  "load_extensions": {
+    "rise/main": true
+  }
+}

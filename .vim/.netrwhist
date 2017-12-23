@@ -1,4 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =5
 let g:netrw_dirhist_1='/usr/share/vim/vim73/syntax'
 let g:netrw_dirhist_2='/tmp_amd/adams/export/adams/2/z5114986/.vim/colors'
+let g:netrw_dirhist_3='/home/evan/.jupyter'
+let g:netrw_dirhist_4='/home/evan/.jupyter/nbconfig'
+let g:netrw_dirhist_5='/home/evan/.jupyter'
